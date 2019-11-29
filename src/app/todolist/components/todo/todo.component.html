@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-7">
+            <p class="alert alert-default">
+                    <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseExample"
+                        aria-expanded="false" aria-controls="collapseExample">
+                        Добавить задание
+                    </button>
+                    <span>{{ loginService.loginMessage}}</span>
+                    <a style="float: right;" (click)="LogOut()">выход</a>
+                </p>
+                <div class="alert alert-dark collapse" id="collapseExample">
+                
+                    <form>
+                        <div class="form-group">
+                            <input name="name" [(ngModel)]="todo.name" type="text" class="form-control" placeholder="name">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="desc" [(ngModel)]="todo.description" aria-placeholder="description"
+                                class="form-control"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="tags-input" [(ngModel)]="stringTags">
+                            <small> добавьте теги разделяя запятой</small>
+                        </div>
+                        <input type="button" [disabled]="todo.name.length == 0" value="add todo" class="btn btn-success form-control"
+                            (click)="Add()">
+                    </form>
+                
+                </div>
+                <input type="text" id="search-input" class="form-control ds-input" placeholder="Search..." name="serch-inp" [(ngModel)]="searchInpValue">
+                <div *ngFor="let todo of toDoList | search:searchInpValue" class="alert alert-success" [ngClass]="{'alert-dark': todo.IsDone}">
+                    <h3>{{todo.Name}}</h3>
+                    <p>{{todo.Description}}</p>
+                    <p>{{todo.CreationDate | date}}</p>
+                    <div>
+                        <small class="badge badge-info" *ngFor="let tag of todo.Tags">{{tag.Name}}</small>
+                    </div>
+                    <div style="padding-bottom: 12px;">
+                        <input id="done" style="float: right;" type="checkbox" [(ngModel)]="todo.IsDone" (change)="Done(todo.Id)">
+                    </div>
+                </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>

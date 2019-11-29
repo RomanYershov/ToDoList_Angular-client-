@@ -1,0 +1,18 @@
+<div class="form-style-10">
+    <h1>ToDo List / Регистрация / <a routerLink="/">Вход </a></h1>
+   
+    <form>
+        <div class="section"><span>1</span>NikName</div>
+        <div class="inner-wrap">
+            <label>Your Name <input type="text" name="field1" [(ngModel)]="user.login"/></label>
+        </div>
+    
+        <div class="section"><span>2</span>Passwords</div>
+            <div class="inner-wrap">
+            <label>Password <input type="password" name="field5" [(ngModel)]="user.password"/></label>
+        </div>
+        <div class="button-section">
+         <input type="submit" class="btn btn-primary" name="Sign Up" [disabled]="user.login.length < 3 || user.password.length == 0" (click)="Registration()"/>
+        </div>
+    </form>
+    </div>
